@@ -1,0 +1,195 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Contest Setup</title>
+
+    <link rel="stylesheet" href="/stylesheets/contest.css">
+</head>
+
+<body class="container">
+    <div class="header">
+        <div class="title">
+            <h1>CoderFarm Contest</h1>
+        </div>
+        <img class="userImg" alt=":)" src="/utility/profilePic" height="50" width="50">
+        <div class="userName">pastacolsugo</div>
+    </div>
+
+    <div class="sidebar">
+        <div class="timer">
+            <p>-1:16:32</p>
+        </div>
+
+        <div class="problemBox greenScore" id="problemBox0">
+            <div class="problemTitle" style="inline">Noccioline</div>
+            <div class="score" style="inline">100</div>
+            <a class="link statementLink" href="#">Testo</a>
+            <a class="link submissionLink" href="#">Sottoposizioni</a>
+            <img class="alert hide" src="/icons" alt="!" height="20" width="20">
+        </div>
+        <div class="problemBox orangeScore" id="problemBox1">
+            <div class="problemTitle">Magneti</div>
+            <div class="score">85</div>
+            <a class="link statementLink" href="#">Testo</a>
+            <a class="link submissionLink" href="#">Sottoposizioni</a>
+            <img class="alert hide" src="/utility/alert" alt="!" height="20" width="20">
+        </div>
+        <div class="problemBox orangeScore openProblem" id="problemBox2">
+            <div class="problemTitle" style="inline">Taxi</div>
+            <div class="score" style="inline">60</div>
+            <a class="link statementLink" href="#">Testo</a>
+            <a class="link submissionLink" href="#">Sottoposizioni</a>
+            <img class="alert hide" src="/utility/alert" alt="!" height="20" width="20">
+        </div>
+        <div class="problemBox greenScore" id="problemBox3">
+            <div class="problemTitle">Gravity</div>
+            <div class="score">100</div>
+            <a class="link statementLink" href="#">Testo</a>
+            <a class="link submissionLink" href="#">Sottoposizioni</a>
+            <img class="alert hide" src="/utility/alert" alt="!" height="20" width="20">
+        </div>
+        <div class="problemBox redScore" id="problemBox4">
+            <div class="problemTitle" style="inline">Canoa</div>
+            <div class="score" style="inline">10</div>
+            <a class="link statementLink" href="#">Testo</a>
+            <a class="link submissionLink" href="#">Sottoposizioni</a>
+            <img class="alert" src="/icons/ic_error_outline_white_24px.svg" alt="!" height="20" width="20">
+        </div>
+        <div class="problemBox redScore" id="problemBox5">
+            <div class="problemTitle">Fuga</div>
+            <div class="score">5</div>
+            <a class="link statementLink" href="#">Testo</a>
+            <a class="link submissionLink" href="#">Sottoposizioni</a>
+            <img class="alert hide" src="/utility/alert" alt="!" height="20" width="20">
+        </div>
+        <div class="problemBox greenScore" id="problemBox6">
+            <div class="problemTitle">Anno Luce</div>
+            <div class="score">100</div>
+            <a class="link statementLink" href="#">Testo</a>
+            <a class="link submissionLink" href="#">Sottoposizioni</a>
+            <img class="alert hide" src="/utility/alert" alt="!" height="20" width="20">
+        </div>
+    </div>
+
+    <div class="content">
+        <div id="problemSub0" class="submissions hide">
+            <h2 class="problemTitle">Noccioline</h2>
+            <div class="stuff">ZERO</div>
+        </div>
+
+        <div id="problemSub1" class="submissions hide">
+            <h2 class="problemTitle">Magneti</h2>
+            <div class="stuff">UNO</div>
+        </div>
+        
+        <div id="problemSub2" class="submissions">
+            <h2 class="problemTitle">Taxi</h2>
+            <div class="stuff">DUE</div>
+        </div>
+        
+        <div id="problemSub3" class="submissions hide">
+            <h2 class="problemTitle">Gravity</h2>
+            <div class="stuff">TRE</div>
+        </div>
+        
+        <div id="problemSub4" class="submissions hide">
+            <h2 class="problemTitle">Canoa</h2>
+            <div class="stuff">QUATTRO</div>
+        </div>
+        
+        <div id="problemSub5" class="submissions hide">
+            <h2 class="problemTitle">Sottoposizioni</h2>
+            <div class="stuff">CINQUE</div>
+        </div>
+        
+        <div id="problemSub6" class="submissions hide">
+            <h2 class="problemTitle">Anno Luce</h2>
+            <div class="stuff">SEI</div>
+        </div>
+        
+        
+        
+    </div>
+    <script type="text/javascript">
+        // this script automatically executes when the page finishes loading
+
+        // https://davidwalsh.name/event-delegate
+
+        // Event Delegation
+        // adding click event listener to the whole sidebar, instead of giving one to each element
+        // the click event will bubble up to the sidebar, where the listener will pick it up and
+        // the original target will be found inside the event properties
+        document.querySelectorAll('div.sidebar')[0].addEventListener("click", function(event){
+            // event.target = the thing you clicked
+            let target = event.target;
+
+            console.log(event.target);
+
+            // checking if the thing you clicked has the 'submissionLink' class
+            if (target.className.includes('submissionLink')) {
+                // if it does, it's a submissionLink
+                // it's parent is the problemBox# div, where # is the problem number
+                // first get the parent element id (e.g. problemBox3)
+                let parentID = target.parentElement.id;
+
+                // extract the problem number (e.g. 3) by replacing each leading non-digit character
+                // with nothing
+                let problemID = parentID.replace( /^\D+/g, '');     // type string
+                    // https://stackoverflow.com/questions/10003683/javascript-get-number-from-string
+                    // D = non-digit
+                    // g = global modifier (looks for every match instead of stopping at the first)
+                    // https://www.w3schools.com/jsref/jsref_regexp_g.asp
+
+                // to retract the now open problem box, retrieve the problem box list
+                let problemBoxList = document.querySelectorAll('.problemBox');
+
+                // check each problemBox if it has the 'openProblem' class
+                for (let i=0; i<problemBoxList.length; i++){
+                    // if the problemBox' list of classes contains the openProblem class
+                    if (problemBoxList[i].classList.contains('openProblem')) {
+                        // remove it
+                        problemBoxList[i].classList.remove('openProblem');
+                        break;
+                    }
+                    // #dev #improvement
+                    // stop the loop to save time or close every problem box to be sure?
+                }
+
+                // open (extend) the new problem box by adding the class 'openProblem'
+                document.getElementById('problemBox'+problemID).classList.add('openProblem');
+
+                // #dev #improvement
+                // search again for the shown content or just rely on the previously open problemBox?
+
+                // find which content is now shown and hide it
+
+                // get the list of every div containing the submission table
+                let submissionsList = document.querySelectorAll('div.submissions');
+
+                // check if each element has the 'hide' class
+                // if it doesn't, add it
+                for (let i=0; i<submissionsList.length; i++) {
+                    if (!submissionsList[i].classList.contains('hide')) {
+                        submissionsList[i].classList.add('hide');
+                    }
+                }
+
+                // remove the hide class from the submission table of the problem I want to show
+                document.getElementById('problemSub'+problemID).classList.remove('hide'); 
+            }
+            // console.log(event.target.parentElement.id); // problem number through parent div ID
+            // console.log(event);
+        });
+
+        // for (let i=0; i<submissionLinks.length; i++){
+        //     // console.log('#problemBox'+i+' a.submissionLinks');
+        //     submissionLinks[i].addEventListener("click", function(e) {
+        //         console.log(e);
+        //     });
+        // }
+
+    </script>  
+</body>
+</html>
