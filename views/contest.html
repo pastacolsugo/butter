@@ -22,61 +22,68 @@
             <p>-1:16:32</p>
         </div>
 
-        <div class="problemBox greenScore" id="problemBox0">
+        <div class="problemBox greenScore openProblem" id="problemBox0">
             <div class="problemTitle" style="inline">Noccioline</div>
             <div class="score" style="inline">100</div>
-            <a class="link statementLink" href="#">Testo</a>
-            <a class="link submissionLink" href="#">Sottoposizioni</a>
-            <img class="alert hide" src="/icons" alt="!" height="20" width="20">
+            <!-- <a class="link statementLink" href="#">Testo</a> -->
+            <!-- <img class="alert hide" src="/icons" alt="!" height="20" width="20"> -->
         </div>
         <div class="problemBox orangeScore" id="problemBox1">
             <div class="problemTitle">Magneti</div>
             <div class="score">85</div>
-            <a class="link statementLink" href="#">Testo</a>
-            <a class="link submissionLink" href="#">Sottoposizioni</a>
-            <img class="alert hide" src="/utility/alert" alt="!" height="20" width="20">
+            <!-- <a class="link statementLink" href="#">Testo</a> -->
+            <!-- <img class="alert hide" src="/utility/alert" alt="!" height="20" width="20"> -->
         </div>
-        <div class="problemBox orangeScore openProblem" id="problemBox2">
+        <div class="problemBox orangeScore" id="problemBox2">
             <div class="problemTitle" style="inline">Taxi</div>
             <div class="score" style="inline">60</div>
-            <a class="link statementLink" href="#">Testo</a>
-            <a class="link submissionLink" href="#">Sottoposizioni</a>
-            <img class="alert hide" src="/utility/alert" alt="!" height="20" width="20">
+            <!-- <a class="link statementLink" href="#">Testo</a> -->
+            <!-- <img class="alert hide" src="/utility/alert" alt="!" height="20" width="20"> -->
         </div>
         <div class="problemBox greenScore" id="problemBox3">
             <div class="problemTitle">Gravity</div>
             <div class="score">100</div>
-            <a class="link statementLink" href="#">Testo</a>
-            <a class="link submissionLink" href="#">Sottoposizioni</a>
-            <img class="alert hide" src="/utility/alert" alt="!" height="20" width="20">
+            <!-- <a class="link statementLink" href="#">Testo</a> -->
+            <!-- <img class="alert hide" src="/utility/alert" alt="!" height="20" width="20"> -->
         </div>
         <div class="problemBox redScore" id="problemBox4">
             <div class="problemTitle" style="inline">Canoa</div>
-            <div class="score" style="inline">10</div>
-            <a class="link statementLink" href="#">Testo</a>
-            <a class="link submissionLink" href="#">Sottoposizioni</a>
-            <img class="alert" src="/icons/ic_error_outline_white_24px.svg" alt="!" height="20" width="20">
+            <div class="score">10</div>
+            <!-- <a class="link statementLink" href="#">Testo</a> -->
+            <!-- <img class="alert hide" src="/icons/ic_error_outline_white_24px.svg" alt="!" height="20" width="20"> -->
         </div>
         <div class="problemBox redScore" id="problemBox5">
             <div class="problemTitle">Fuga</div>
             <div class="score">5</div>
-            <a class="link statementLink" href="#">Testo</a>
-            <a class="link submissionLink" href="#">Sottoposizioni</a>
-            <img class="alert hide" src="/utility/alert" alt="!" height="20" width="20">
+            <!-- <a class="link statementLink" href="#">Testo</a> -->
+            <!-- <img class="alert hide" src="/utility/alert" alt="!" height="20" width="20"> -->
         </div>
         <div class="problemBox greenScore" id="problemBox6">
             <div class="problemTitle">Anno Luce</div>
             <div class="score">100</div>
-            <a class="link statementLink" href="#">Testo</a>
-            <a class="link submissionLink" href="#">Sottoposizioni</a>
-            <img class="alert hide" src="/utility/alert" alt="!" height="20" width="20">
+            <!-- <img class="link statementLink" src="/icons/ic_insert_drive_file_white_24px.svg"href="#"></a> -->
+            <!-- <img class="alert hide" src="/utility/alert" alt="!" height="20" width="20"> -->
         </div>
     </div>
 
     <div class="content">
-        <div id="problemSub0" class="submissions hide">
+        <div id="problemSub0" class="submissions">
             <h2 class="problemTitle">Noccioline</h2>
             <div class="stuff">ZERO</div>
+            <div class="submissionTable">
+                <table>
+                    <tr>
+                        <th>f</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
         </div>
 
         <div id="problemSub1" class="submissions hide">
@@ -84,7 +91,7 @@
             <div class="stuff">UNO</div>
         </div>
         
-        <div id="problemSub2" class="submissions">
+        <div id="problemSub2" class="submissions hide">
             <h2 class="problemTitle">Taxi</h2>
             <div class="stuff">DUE</div>
         </div>
@@ -115,6 +122,27 @@
     <script type="text/javascript">
         // this script automatically executes when the page finishes loading
 
+        // checks if the clicked element should trigger the content change
+        let changeDisplayProblemCondition = function (clickEventTarget){
+            // if you clicked the problem statement link, the content must not change
+            if (clickEventTarget.classList.contains('statementLink')) {
+                return false;
+            }
+
+            // if you clicked anywhere on the problemBox AND it's not the one shown now
+            // the content has to change
+            if (clickEventTarget.classList.contains('problemBox') && !clickEventTarget.classList.contains('openProblem')){
+                return true;
+            }
+
+            // if you click any element inside the problemBox, beside the problemStatement link
+            // you have to check if the parent is the currently shown problem or not
+            if (clickEventTarget.parentElement.classList.contains('problemBox') && !clickEventTarget.parentElement.classList.contains('openProblem')) {
+                return true;
+            }
+            return false;
+        };
+
         // https://davidwalsh.name/event-delegate
 
         // Event Delegation
@@ -125,22 +153,35 @@
             // event.target = the thing you clicked
             let target = event.target;
 
-            console.log(event.target);
+            console.log(event);
 
-            // checking if the thing you clicked has the 'submissionLink' class
-            if (target.className.includes('submissionLink')) {
-                // if it does, it's a submissionLink
-                // it's parent is the problemBox# div, where # is the problem number
-                // first get the parent element id (e.g. problemBox3)
-                let parentID = target.parentElement.id;
+            // change the shown problem
+            // retracting the (now) extended problemBox
+            // extending the selected problem's problemBox
+            // hiding the (now) shown content
+            // showing the selected problem's content
 
-                // extract the problem number (e.g. 3) by replacing each leading non-digit character
-                // with nothing
-                let problemID = parentID.replace( /^\D+/g, '');     // type string
-                    // https://stackoverflow.com/questions/10003683/javascript-get-number-from-string
-                    // D = non-digit
-                    // g = global modifier (looks for every match instead of stopping at the first)
-                    // https://www.w3schools.com/jsref/jsref_regexp_g.asp
+            if (changeDisplayProblemCondition(target)) {
+                console.log('the stairs are changing!');
+
+                let problemID = null;
+                
+                // if the click's target wasn't the problemBox, the problemId is stored in
+                // the parent element's id
+                if (!target.classList.contains('problemBox')) {
+                    let parentID = target.parentElement.id;
+
+                    // extract the problem number (e.g. 3) by replacing each leading non-digit character
+                    // with nothing
+                    problemID = parentID.replace( /^\D+/g, '');     // type string
+                        // https://stackoverflow.com/questions/10003683/javascript-get-number-from-string
+                        // D = non-digit
+                        // g = global modifier (looks for every match instead of stopping at the first)
+                        // https://www.w3schools.com/jsref/jsref_regexp_g.asp
+                } else {
+                    problemID = target.id.replace(/^\D+/g, '');
+                }
+
 
                 // to retract the now open problem box, retrieve the problem box list
                 let problemBoxList = document.querySelectorAll('.problemBox');

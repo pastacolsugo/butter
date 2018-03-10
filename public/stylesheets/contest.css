@@ -3,9 +3,15 @@
     src: url(/font/dejavumono);
 }
 
+html, body {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
+
 .container {
     display: grid;
-    grid-template-rows: 15% auto;
+    grid-template-rows: 8.5% auto;
     grid-template-columns: minmax(10em, 14em) minmax(50em, 3000em);
     /*                    1   2     3   */
 
@@ -54,8 +60,6 @@ div.title h1 {
     grid-row-start: 2;
     grid-row-end: 3;
 
-    padding-bottom: 100%;
-
     color: white;
     /*background-color: #6795ff;*/
     background-color: rgba(0, 0, 0, 0.7);
@@ -95,16 +99,21 @@ div.title h1 {
 .problemBox {
     display: grid;
     grid-template-columns: auto 15%;
-    grid-template-rows: 20% auto auto;
+    grid-template-rows: auto;
     /*                 1   2    3    4*/
 
+    font-size: 12pt;
+
     margin-top: 0.5em;
-    margin-bottom: 0.5em;
-    margin-right: 0.7em;
-    margin-left: 0;
+    margin-bottom: 1em;
+    margin-right: 1.5em;
+
+    border-top: 1em;
+    border-bottom: 1em;
 
     /*border: solid grey 1px;*/
-    padding: 0.6em;
+    padding: 1.2em;
+    padding-left: 0.6em;
 }
 
 .problemTitle {
@@ -120,8 +129,8 @@ div.title h1 {
 .problemScore {
     grid-column-start: 2;
     grid-column-end: 3;
-    grid-row-start: 2;
-    grid-row-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
 }
 
 .link {
@@ -153,13 +162,14 @@ div.title h1 {
     font-size: 10pt;
 
     margin-bottom: 0.2em;
+    margin-right: 6em;
 }
 
 .alert {
     grid-column-start: 2;
     grid-column-end: 3;
-    grid-row-start: 3;
-    grid-row-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 3;
 }
 
 .hide {
@@ -168,6 +178,8 @@ div.title h1 {
 
 .openProblem {
     margin-right: 0em;
+    padding-top: 1em;
+    padding-bottom: 2.5em;
 }
 
 .greenScore {
