@@ -3,18 +3,17 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Contest Setup</title>
+    <title>Contest</title>
 
     <link rel="stylesheet" href="/stylesheets/contest.css">
 </head>
 
-<body class="container">
+<body>
     <div class="header">
         <div class="title">
             <h1>CoderFarm Contest</h1>
         </div>
-        <img class="userImg" alt=":)" src="/utility/profilePic" height="50" width="50">
-        <div class="userName">pastacolsugo</div>
+        <div class="userName">sugo</div>
     </div>
 
     <div class="sidebar">
@@ -25,62 +24,94 @@
         <div class="problemBox greenScore openProblem" id="problemBox0">
             <div class="problemTitle" style="inline">Noccioline</div>
             <div class="score" style="inline">100</div>
-            <!-- <a class="link statementLink" href="#">Testo</a> -->
-            <!-- <img class="alert hide" src="/icons" alt="!" height="20" width="20"> -->
         </div>
         <div class="problemBox orangeScore" id="problemBox1">
             <div class="problemTitle">Magneti</div>
             <div class="score">85</div>
-            <!-- <a class="link statementLink" href="#">Testo</a> -->
-            <!-- <img class="alert hide" src="/utility/alert" alt="!" height="20" width="20"> -->
         </div>
         <div class="problemBox orangeScore" id="problemBox2">
             <div class="problemTitle" style="inline">Taxi</div>
             <div class="score" style="inline">60</div>
-            <!-- <a class="link statementLink" href="#">Testo</a> -->
-            <!-- <img class="alert hide" src="/utility/alert" alt="!" height="20" width="20"> -->
         </div>
         <div class="problemBox greenScore" id="problemBox3">
             <div class="problemTitle">Gravity</div>
             <div class="score">100</div>
-            <!-- <a class="link statementLink" href="#">Testo</a> -->
-            <!-- <img class="alert hide" src="/utility/alert" alt="!" height="20" width="20"> -->
         </div>
         <div class="problemBox redScore" id="problemBox4">
             <div class="problemTitle" style="inline">Canoa</div>
             <div class="score">10</div>
-            <!-- <a class="link statementLink" href="#">Testo</a> -->
-            <!-- <img class="alert hide" src="/icons/ic_error_outline_white_24px.svg" alt="!" height="20" width="20"> -->
         </div>
         <div class="problemBox redScore" id="problemBox5">
             <div class="problemTitle">Fuga</div>
             <div class="score">5</div>
-            <!-- <a class="link statementLink" href="#">Testo</a> -->
-            <!-- <img class="alert hide" src="/utility/alert" alt="!" height="20" width="20"> -->
         </div>
         <div class="problemBox greenScore" id="problemBox6">
             <div class="problemTitle">Anno Luce</div>
             <div class="score">100</div>
-            <!-- <img class="link statementLink" src="/icons/ic_insert_drive_file_white_24px.svg"href="#"></a> -->
-            <!-- <img class="alert hide" src="/utility/alert" alt="!" height="20" width="20"> -->
+        </div>
+        <div class="problemBox upload-toggle">
+            <div class="problemTitle">Toggle upload</div>
         </div>
     </div>
 
     <div class="content">
+        <!-- https://stackoverflow.com/questions/9182978/semi-transparent-color-layer-over-background-image -->
+        <div class="drag-drop-area drag-drop-area-highlight">
+            <div class="drag-drop-area icon-container">
+                <i class="drag-drop-area material-icons md-64 cloud-upload">cloud_upload</i>
+                <!-- <i class="drag-drop-area material-icons md-64 file-upload hide">file_upload</i> -->
+            </div>
+            <div class="drag-drop-area drag-drop-area-message">Drop to upload.</div>
+        </div>
+
         <div id="problemSub0" class="submissions">
             <h2 class="problemTitle">Noccioline</h2>
-            <div class="stuff">ZERO</div>
-            <div class="submissionTable">
+            <div class="submission-submit">
+                <!-- https://www.smashingmagazine.com/2018/01/drag-drop-file-uploader-vanilla-js/ -->
+                <!-- https://stackoverflow.com/questions/29659154/what-is-the-best-way-to-upload-files-in-a-modern-browser -->
+                <!-- https://deliciousbrains.com/using-javascript-file-api-to-avoid-file-upload-limits/ -->
+            </div>
+            <div class="submissionTable google-inbox-shadow">
                 <table>
-                    <tr>
-                        <th>Time</th>
-                        <th>Status</th>
-                        <th>Download</th>
+                    <tr class="lastSubmission">
+                        <td class="submissionTime">15:32<div class="time seconds">:50</div></td>
+                        <td class="status evaluated orangeScore">80</td>
+                        <td class="submissionDownload"><i class="material-icons download-icon">file_download</i></td>
                     </tr>
                     <tr>
-                        <td><div class="submissionTime">15:32:51</td>
-                        <td><div class="status evaluated orangeScore">68</td>
-                        <td><img class="submissionDownload</td>
+                        <td class="submissionTime">15:32<div class="time seconds">:12</div></td>
+                        <td class="status evaluated redScore">5</td>
+                        <td class="submissionDownload"><i class="material-icons download-icon">file_download</i></td>
+                    </tr>
+                    <tr>
+                        <td class="submissionTime">15:28<div class="time seconds">:01</div></td>
+                        <td class="status evaluated orangeScore">70</td>
+                        <td class="submissionDownload"><i class="material-icons download-icon">file_download</i></td>
+                    </tr>
+                    <tr>
+                        <td class="submissionTime">15:27<div class="time seconds">:40</div></td>
+                        <td class="status evaluated orangeScore">45</td>
+                        <td class="submissionDownload"><i class="material-icons download-icon">file_download</i></td>
+                    </tr>
+                    <tr>
+                        <td class="submissionTime">15:02<div class="time seconds">:12</div></td>
+                        <td class="status evaluated greenScore">100</td>
+                        <td class="submissionDownload"><i class="material-icons download-icon">file_download</i></td>
+                    </tr>
+                    <tr>
+                        <td class="submissionTime">15:01<div class="time seconds">:38</div></td>
+                        <td class="status evaluated greenScore">100</td>
+                        <td class="submissionDownload"><i class="material-icons download-icon">file_download</i></td>
+                    </tr>
+                    <tr>
+                        <td class="submissionTime">14:56<div class="time seconds">:31</div></td>
+                        <td class="status evaluated redScore">0</td>
+                        <td class="submissionDownload"><i class="material-icons download-icon">file_download</i></td>
+                    </tr>
+                    <tr class="firstSubmission">
+                        <td class="submissionTime">14:38<div class="time seconds">:10</div></td>
+                        <td class="status evaluated redScore">10</td>
+                        <td class="submissionDownload"><i class="material-icons download-icon">file_download</i></td>
                     </tr>
                 </table>
             </div>
@@ -115,9 +146,6 @@
             <h2 class="problemTitle">Anno Luce</h2>
             <div class="stuff">SEI</div>
         </div>
-        
-        
-        
     </div>
     <script type="text/javascript">
         // this script automatically executes when the page finishes loading
@@ -143,9 +171,19 @@
             return false;
         };
 
-        // https://davidwalsh.name/event-delegate
+        let isToggleUpload = function (target) {
+            if (target.classList.contains('upload-toggle'))
+                return true;
 
-        // Event Delegation
+            if (target.parentElement.classList.contains('upload-toggle')) {
+                return true;
+            }
+
+            return false;
+        }
+
+
+        // Event Delegation // https://davidwalsh.name/event-delegate
         // adding click event listener to the whole sidebar, instead of giving one to each element
         // the click event will bubble up to the sidebar, where the listener will pick it up and
         // the original target will be found inside the event properties
@@ -161,7 +199,7 @@
             // hiding the (now) shown content
             // showing the selected problem's content
 
-            if (changeDisplayProblemCondition(target)) {
+            if (changeDisplayProblemCondition(target) && !isToggleUpload(target)) {
                 console.log('the stairs are changing!');
 
                 let problemID = null;
@@ -220,17 +258,28 @@
                 // remove the hide class from the submission table of the problem I want to show
                 document.getElementById('problemSub'+problemID).classList.remove('hide'); 
             }
+
+            if (isToggleUpload (target)) {
+                console.log ('toggle!');
+
+                let ddarea = document.querySelectorAll('.drag-drop-area');
+
+                for (let i=0; i<ddarea.length; i++) {
+                    ddarea[i].classList.toggle('hide');
+                }
+            }
             // console.log(event.target.parentElement.id); // problem number through parent div ID
             // console.log(event);
         });
 
-        // for (let i=0; i<submissionLinks.length; i++){
-        //     // console.log('#problemBox'+i+' a.submissionLinks');
-        //     submissionLinks[i].addEventListener("click", function(e) {
-        //         console.log(e);
-        //     });
-        // }
+        document.querySelectorAll('div.content')[0].addEventListener("click", function(event){
+            console.log (event);
+
+        });
 
     </script>  
 </body>
 </html>
+
+
+

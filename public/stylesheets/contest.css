@@ -10,12 +10,12 @@
   font-family: 'Material Icons';
   font-style: normal;
   font-weight: 400;
-  src: url(https://example.com/MaterialIcons-Regular.eot); /* For IE6-8 */
+  src: url(http://localhost:8080/font/MaterialIcons-Regular.eot); /* For IE6-8 */
   src: local('Material Icons'),
     local('MaterialIcons-Regular'),
-    url(https://example.com/MaterialIcons-Regular.woff2) format('woff2'),
-    url(https://example.com/MaterialIcons-Regular.woff) format('woff'),
-    url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
+    url(http://localhost:8080/font/MaterialIcons-Regular.woff2) format('woff2'),
+    url(http://localhost:8080/font/MaterialIcons-Regular.woff) format('woff'),
+    url(http://localhost:8080/font/MaterialIcons-Regular.ttf) format('truetype');
 }
 
 .material-icons {
@@ -48,6 +48,7 @@
 .material-icons.md-24 { font-size: 24px; }
 .material-icons.md-36 { font-size: 36px; }
 .material-icons.md-48 { font-size: 48px; }
+.material-icons.md-64 { font-size: 64px; }
 
 /* Rules for using icons as black on a light background. */
 .material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
@@ -57,22 +58,26 @@
 .material-icons.md-light { color: rgba(255, 255, 255, 1); }
 .material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
 
+.google-inbox-shadow {
+    box-shadow: 0 -1px 0 #e0e0e0, 0 0 2px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.24);
+}
+
 html, body {
     margin: 0;
     height: 100%;
     width: 100%;
 }
 
-.container {
+body {
     display: grid;
-    grid-template-rows: 8.5% auto;
+    grid-template-rows: 5em auto;
     grid-template-columns: minmax(10em, 14em) minmax(50em, 3000em);
     /*                    1   2     3   */
 
     font-family: "DejaVuMono";
     /*background-color: #b4e800;*/
     /*background-color: #abc5ff;*/
-    background-color: white;
+    background-color: #f2f2f2; /*inbox*/
     margin: 0;
 
     font-size: 12pt;
@@ -91,7 +96,9 @@ html, body {
     /*background-color: #f37000*/
     /*background-color: #009b7d*/
     /*background-color: #0437ab;*/
-    background-color: #0D6C7D;
+    /*background-color: #0D6C7D;*/ /*cado*/
+    background-color: #4285f4; /*inbox*/
+    box-shadow: 0 0 4px rgba(0,0,0,.14), 0 4px 8px rgba(0,0,0,.28);
 }
 
 .title {
@@ -118,6 +125,8 @@ div.title h1 {
     color: white;
     /*background-color: #6795ff;*/
     background-color: rgba(0, 0, 0, 0.7);
+
+    box-shadow: inset -1px 4px 18px 0px black;
 }
 
 .header .userImg {
@@ -169,6 +178,8 @@ div.title h1 {
     /*border: solid grey 1px;*/
     padding: 1.2em;
     padding-left: 0.6em;
+    
+    box-shadow: -4px 3px 9px 0px black;
 }
 
 .problemTitle {
@@ -256,8 +267,19 @@ div.title h1 {
 }
 
 .content {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
     padding: 2em;
     padding-right: 3em;
+    position: relative;
+}
+
+.content.submissions {
+    display: grid;
+    grid-template-rows: 100%;
+    grid-template-columns: 2% auto 20%;
 }
 
 .problemTitle {
@@ -269,3 +291,153 @@ div.title h1 {
     color: white;
     padding: 3em;
 }
+
+.time {
+    display: inline-block;
+    color: black;
+    font-size: 12pt
+}
+
+.time.seconds {
+    display: inline-block;
+    font-size: 8pt;
+    color: rgba(0, 0, 0, 0.35);
+    /*padding: 0 0.2em;*/
+}
+
+.submissionTable {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+.submissionTable table {
+    /*border: solid black 1px;*/
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    color: #212121;
+}
+
+.submissionTable tr {
+    margin: 0;
+}
+
+.submissionTable tr td {
+    border: solid rgba(0, 0, 0, 0.3) 1px;
+    border-width: 1px 0px;
+    border-collapse: collapse;
+    margin: 0;
+}
+
+.status {
+    padding: 0.5em 4em;
+    text-align: center;
+    margin: 0px;
+}
+
+.submissionTime {
+    text-align: center;
+}
+
+.submissionDownload {
+    text-align: center;
+    padding: 0.3em 1em;
+}
+
+.submissionTable .lastSubmission td {
+    border-width: 0 0 1px 0;
+}
+
+.submissionTable .firstSubmission td {
+    border-width: 1px 0 0 0;
+}
+
+.material-icons.download-icon {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.drag-drop-area.drag-drop-area-highlight {
+    /*https://stackoverflow.com/questions/9182978/semi-transparent-color-layer-over-background-image*/
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0; 
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 40, 250, 0.4);
+
+    /* Do not use the border, use an inset box shadow instead
+     The border messes up the element position: 
+     - the highlight dimension are set @ 100% it's parent's size
+     - if you add a 3px border, the total highlight div size's 
+        increases to 100% + 6px (3px * 2 sides)
+     - when the highlight div gets placed to (0, 0), it goes 
+        outside the page, messing things up and hiding the 
+        bottom and right border 
+    -> the inset box shadow remains inside, but it can't be 
+        rounded, only blurred
+
+    blurring it makes things quite messy, there are already enough shadows
+    */
+    box-shadow: inset 0 0 0px 3px blue;
+
+    display: grid;
+    grid-template-columns: 33% auto 33%;
+    grid-template-rows: auto 10% 10%;
+}
+
+.drag-drop-area.drag-drop-area-highlight.hide {
+    /* display:none doesn't work on elements
+     which have css grid inside
+     I tried simply removing the background but
+     doing so, the element would still be there
+     and each click event would have it as target.
+     By giving it no size there is no blue tint
+     and the click event's target are normal
+     */
+    height: 0;
+    width: 0;
+    background: rgba(0, 0, 0, 0);
+    box-shadow: none;
+}
+
+
+.drag-drop-area.icon-container {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-column-end: 2;
+
+    display: grid;
+
+    grid-template-columns: 40% auto 40%;
+    grid-template-rows: 90% auto 3%;
+}
+
+.drag-drop-area.material-icons {
+    color: white;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    text-align: center;
+}
+
+.drag-drop-area.drag-drop-area-message {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    color: white;
+    background: rgba(0, 0, 255, 0.8);
+    border-radius: 1.5em;
+    text-align: center;
+    padding: 2em 0 0 0;
+}
+
+
