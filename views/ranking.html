@@ -1,0 +1,259 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Contest</title>
+
+    <link rel="stylesheet" href="/stylesheets/ranking.css">
+</head>
+
+<body>
+    <div class="header">
+        <div class="title">
+            <h1>CoderFarm Contest</h1>
+        </div>
+        <div class="userName">sugo</div>
+    </div>
+
+    <div class="sidebar">
+        <div class="timer">
+            <p><span class="sign">-</span><span class="hours">0</span><span class="minutes">:00</span><span class="seconds">:00</span></p>
+        </div>
+
+        <div class="problemBox greenScore openProblem" id="problemBox0">
+            <div class="problemTitle" style="inline">Noccioline</div>
+            <div class="score" style="inline">100</div>
+        </div>
+    </div>
+
+    <div class="content">
+        <div id="problemSub0" class="submissions">
+            <h2 class="problemTitle">Ranking</h2>
+            <div class="submission-submit">
+                <!-- https://www.smashingmagazine.com/2018/01/drag-drop-file-uploader-vanilla-js/ -->
+                <!-- https://stackoverflow.com/questions/29659154/what-is-the-best-way-to-upload-files-in-a-modern-browser -->
+                <!-- https://deliciousbrains.com/using-javascript-file-api-to-avoid-file-upload-limits/ -->
+            </div>
+            <div class="rankingTable google-inbox-shadow">
+                <table>
+                    <tr>
+                        <td class="userName">Arachidi Veloci</td>
+                        <td class="problemScore greenScore">80</td>
+                        <td class="problemScore redScore">0</td>
+                        <td class="problemScore greenScore">80</td>
+                        <td class="problemScore orangeScore">60</td> 
+                        <td class="problemScore redScore">0</td>
+                        <td class="problemScore orangeScore">60</td>
+                        <td class="problemScore redScore">0</td>
+                        <td class="totalScore orangeScore">0</td>
+                    </tr>
+                    <tr>
+                        <td class="userName">Alberghetti Rosso</td>
+                        <td class="problemScore redScore">0</td>
+                        <td class="problemScore orangeScore">60</td>
+                        <td class="problemScore redScore">0</td>
+                        <td class="problemScore redScore">0</td> 
+                        <td class="problemScore redScore">0</td>
+                        <td class="problemScore greenScore">60</td>
+                        <td class="problemScore orangeScore">80</td>
+                        <td class="totalScore redScore">0</td>
+                    </tr>
+                    <tr>
+                        <td class="userName">Pomodori Pelati</td>
+                        <td class="problemScore orangeScore">80</td>
+                        <td class="problemScore orangeScore">60</td>
+                        <td class="problemScore orangeScore">80</td>
+                        <td class="problemScore orangeScore">60</td> 
+                        <td class="problemScore orangeScore">80</td>
+                        <td class="problemScore orangeScore">60</td>
+                        <td class="problemScore orangeScore">80</td>
+                        <td class="totalScore greenScore">0</td>
+                    </tr>
+                    <tr>
+                        <td class="userName">Team Broglio</td>
+                        <td class="problemScore redScore">0</td>
+                        <td class="problemScore greenScore">60</td>
+                        <td class="problemScore orangeScore">80</td>
+                        <td class="problemScore orangeScore">60</td> 
+                        <td class="problemScore redScore">0</td>
+                        <td class="problemScore redScore">0</td>
+                        <td class="problemScore orangeScore">80</td>
+                        <td class="totalScore orangeScore">0</td>
+                    </tr>
+                    <tr>
+                        <td class="userName">Gt Carbide</td>
+                        <td class="problemScore redScore">0</td>
+                        <td class="problemScore redScore">0</td>
+                        <td class="problemScore orangeScore">80</td>
+                        <td class="problemScore orangeScore">60</td> 
+                        <td class="problemScore orangeScore">80</td>
+                        <td class="problemScore greenScore">60</td>
+                        <td class="problemScore orangeScore">80</td>
+                        <td class="totalScore orangeScore">0</td>
+                    </tr>
+                    <tr>
+                        <td class="userName">Il labirinto</td>
+                        <td class="problemScore greenScore">80</td>
+                        <td class="problemScore greenScore">60</td>
+                        <td class="problemScore redScore">0</td>
+                        <td class="problemScore orangeScore">60</td> 
+                        <td class="problemScore problemScore redScore">0</td>
+                        <td class="problemScore orangeScore">60</td>
+                        <td class="problemScore greenScore">80</td>
+                        <td class="totalScore orangeScore">0</td>
+                    </tr>
+                    <tr>
+                        <td class="userName">Dungeon Masters</td>
+                        <td class="problemScore greenScore">80</td>
+                        <td class="problemScore orangeScore">60</td>
+                        <td class="problemScore orangeScore">80</td>
+                        <td class="problemScore redScore">0</td> 
+                        <td class="problemScore orangeScore">80</td>
+                        <td class="problemScore orangeScore">60</td>
+                        <td class="problemScore orangeScore">80</td>
+                        <td class="totalScore greenScore">0</td>
+                    </tr>
+                    <tr>
+                        <td class="userName">BlockNotes</td>
+                        <td class="problemScore redScore">0</td>
+                        <td class="problemScore orangeScore">60</td>
+                        <td class="problemScore redScore">0</td>
+                        <td class="problemScore redScore">0</td> 
+                        <td class="problemScore redScore">0</td>
+                        <td class="problemScore redScore">0</td>
+                        <td class="problemScore redScore">0</td>
+                        <td class="totalScore redScore">0</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        // this script automatically executes when the page finishes loading
+
+        // checks if the clicked element should trigger the content change
+        let changeDisplayProblemCondition = function (clickEventTarget){
+            // if you clicked the problem statement link, the content must not change
+            if (clickEventTarget.classList.contains('statementLink')) {
+                return false;
+            }
+
+            // if you clicked anywhere on the problemBox AND it's not the one shown now
+            // the content has to change
+            if (clickEventTarget.classList.contains('problemBox') && !clickEventTarget.classList.contains('openProblem')){
+                return true;
+            }
+
+            // if you click any element inside the problemBox, beside the problemStatement link
+            // you have to check if the parent is the currently shown problem or not
+            if (clickEventTarget.parentElement.classList.contains('problemBox') && !clickEventTarget.parentElement.classList.contains('openProblem')) {
+                return true;
+            }
+            return false;
+        };
+
+
+        // ------------------------------------------
+        // timer
+
+        let startTime = new Date();
+
+        let finishTime = new Date();
+
+        finishTime.setHours(startTime.getHours()+3);
+
+        console.log(finishTime);
+
+        let padNumber = (num) => {
+            if (num == 0) return "00";
+            if (num < 10) return "0" + num.toString();
+            return num;
+        }
+
+        let clickTimer = function () {
+            // initialize a new Date obj that already contains this moment date
+            let now = new Date();
+
+            let display = {}; 
+
+            // remaining time in milliseconds
+            display.ms = finishTime.getTime() - now.getTime();
+
+            // computing remaining time in hours, minutes and seconds
+            display.hours = Math.floor(display.ms/3600000);
+            display.minutes = Math.floor((display.ms/60000)%60);
+            display.seconds = Math.floor((display.ms/1000)%60);
+
+            document.querySelector ('.timer p span.hours').innerHTML = display.hours;
+            document.querySelector ('.timer p span.minutes').innerHTML = ":" + padNumber(display.minutes);
+            document.querySelector ('.timer p span.seconds').innerHTML = ":" + padNumber(display.seconds);
+
+            return true;
+        };
+
+        setInterval (clickTimer, 1000);
+
+        // ------------------------------------------
+        // swap members based on ranking position
+
+        let swapUsers = (one, two) => {
+            // index are given 1-based, the list is 0-based
+            one--;
+            two--;
+
+            // get all teams in the table
+            let list = document.querySelectorAll(".rankingTable table tr");
+
+            // check boundaries
+            if (one < 0 || one >= list.length || two < 0 || two >= list.length || one == two) {
+                return false;
+            }
+
+            // save inner html as string (otherwise it will point to the DOM Node)
+            let elementOne = list[one].innerHTML.toString();
+
+            // and swap 'em
+            list[one].innerHTML = list[two].innerHTML;
+            list[two].innerHTML = elementOne;
+
+            return true;
+        }
+
+        // -------------------------------------------
+        // calculate team's total score
+
+        let calculateTeamTotal = (position) => {
+            // console.log(document.querySelectorAll (".rankingTable table tr"));
+            // get a list of every line in the table
+            let teamList = document.querySelectorAll(".rankingTable table tr");
+            let total = 0;
+
+            // for each cell of the selected row
+            for (let i=0; i<teamList[position-1].children.length; i++) {
+                let p = teamList[position-1].children[i];
+
+                if (p.classList.contains("problemScore")) {
+                    total += parseInt(p.innerHTML);
+                }
+            }
+
+            teamList[position-1].children[teamList[position-1].children.length-1].innerHTML = total;
+        }
+
+        // calculate all total scores
+
+        let calculateTotals = function () { 
+            let teamList = document.querySelectorAll(".rankingTable table tr");
+
+            for (let i=0; i<teamList.length; i++){
+                calculateTeamTotal(i+1);
+            }
+        }
+
+        calculateTotals();
+
+    </script>
+</body>
+</html>
+ 

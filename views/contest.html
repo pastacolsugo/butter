@@ -56,12 +56,12 @@
 
     <div class="content">
         <!-- https://stackoverflow.com/questions/9182978/semi-transparent-color-layer-over-background-image -->
-        <div class="drag-drop-area drag-drop-area-highlight">
-            <div class="drag-drop-area icon-container">
-                <i class="drag-drop-area material-icons md-64 cloud-upload">cloud_upload</i>
+        <div class="drag-drop-area drag-drop-area-highlight hide">
+            <div class="drag-drop-area icon-container hide">
+                <i class="drag-drop-area material-icons md-64 cloud-upload hide">cloud_upload</i>
                 <!-- <i class="drag-drop-area material-icons md-64 file-upload hide">file_upload</i> -->
             </div>
-            <div class="drag-drop-area drag-drop-area-message">Drop to upload.</div>
+            <div class="drag-drop-area drag-drop-area-message hide">Drop to upload</div>
         </div>
 
         <div id="problemSub0" class="submissions">
@@ -272,10 +272,45 @@
             // console.log(event);
         });
 
-        document.querySelectorAll('div.content')[0].addEventListener("click", function(event){
-            console.log (event);
+        let dragDropArea = document.querySelectorAll('div.content')[0];
+        // let dragDropEvents = ['dragenter', 'dragover', 'dragleave', 'drop'];
+        let dragDropEvents = ['dragenter', 'dragleave', 'drop'];
 
+        function preventDefault (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // let isContent = e.path.find( (obj) => {
+            //     if (obj.localName == 'div' && obj.className == 'content') {
+            //         return true;
+            //     }
+            //     return false;
+            // } );
+
+            // console.log (e.path);
+
+            let isContent = false;
+            
+            e.path.forEach( (obj) => {
+                if (obj.localName == 'div' && obj.className == 'content') {
+                    isContent = true;
+                }
+            });
+
+            console.log (isContent);
+        };
+
+        // have to check if the event's target element has 'div.content' as parent
+        // each event has the `path` property
+        // https://www.linkedin.com/pulse/javascript-find-object-array-based-objects-property-rafael
+
+        dragDropEvents.forEach(eventName => {
+            dragDropArea.addEventListener(eventName, preventDefault, false)
         });
+
+        dragDropArea.addEventListener('dragover', (event) => { event.preventDefault(); event.stopPropagation(); }, false);
+
+        
 
     </script>  
 </body>
